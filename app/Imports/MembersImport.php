@@ -17,6 +17,9 @@ class MembersImport implements ToModel, WithHeadingRow
 
     public function model(array $row)
     {
+        $file     = request()->file('file');
+        $fileName = $file->getClientOriginalName();
+
         if($row['code']!=""){
             return Member::updateOrCreate([
                 'code' => $row['code']],
@@ -29,7 +32,7 @@ class MembersImport implements ToModel, WithHeadingRow
                 'state' => $row['deliverystateregion'],
                 'postalcode' => $row['p_code'],
                 'dispatch_date' => $row['dispatch_date'],
-                'filename' => '',
+                'filename' => $fileName,
             ]);
         }
     }

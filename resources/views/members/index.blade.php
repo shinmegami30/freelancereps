@@ -30,6 +30,7 @@
                 <th>Postal Code</th>
                 <th class="text-right">Code</th>
                 <th>Dispatch Date</th>
+                <th>Filename</th>
                 <th>Date Created</th>
                 <th class="text-center">&nbsp;</th>
               </tr>
@@ -47,6 +48,7 @@
                         <td>{{ $member->postalcode }}</td>
                         <td class="text-right">{{ $member->code }}</td>
                         <td>{{ $member->dispatch_date }}</td>
+                        <td>{{ $member->filename }}</td>
                         <td>{{ $member->created_at }}1</td>
                         <td>
                             <div class="dropdown">
@@ -70,7 +72,7 @@
                 @endforeach
             @else  
                 <tr>
-                    <td colspan="11" class="text-center">No member(s) found</td>
+                    <td colspan="12" class="text-center">No member(s) found</td>
                 </tr>
             @endif
             </tbody>
