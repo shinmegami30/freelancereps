@@ -30,6 +30,7 @@
                 <th>Postal Code</th>
                 <th class="text-right">Code</th>
                 <th>Dispatch Date</th>
+                <th>Date Created</th>
                 <th class="text-center">&nbsp;</th>
               </tr>
             </thead>
@@ -46,6 +47,7 @@
                         <td>{{ $member->postalcode }}</td>
                         <td class="text-right">{{ $member->code }}</td>
                         <td>{{ $member->dispatch_date }}</td>
+                        <td>{{ $member->created_at }}</td>
                         <td>
                             <div class="dropdown">
                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -68,12 +70,12 @@
                 @endforeach
             @else  
                 <tr>
-                    <td colspan="10" class="text-center">No member(s) found</td>
+                    <td colspan="11" class="text-center">No member(s) found</td>
                 </tr>
             @endif
             </tbody>
           </table>
-          <div class="text-right">
+          <div class="text-center record-pagination">
             @if(count($members) > 0)
                 {{ $members->links() }}
             @endif 
