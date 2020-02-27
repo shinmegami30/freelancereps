@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
 use App\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
@@ -43,13 +44,16 @@ class UserController extends Controller
      */
     public function store(UserRequest $request, User $model)
     {
+        $user_role = $request->input('role');
+        $email = $request->input('email');
+
         $model->create($request->merge(['password' => Hash::make($request->get('password'))])->all());
         
-        $user_role = $request->get('role');
-        
-        $model->assignRole($user_role);
+        $user = User::where('email', $email)->first();
 
-        return redirect()->route('user.index')->withStatus(__('User successfully created.'));
+        $user->assignRole($user_role);
+
+        return redirect()->route('user.index')->withStatus(__('User successfully created.' . $user->id ));
     }
 
     /**

@@ -72,7 +72,7 @@
                         <p class="submit">
                             <input type="hidden" class="" id="rs_quick_contact_nonce" name="rs_quick_contact_nonce" value="8303b77bca">
                             <input type="hidden" name="_wp_http_referer" value="/wp-admin/index.php">
-                            <input type="submit" name="send" id="send-contact" class="btn btn-sm btn-primary" value="Send Message">
+                            <input type="submit" name="send" id="send-contact" class="btn btn-sm btn-primary"  value="Send Message" disabled />
                             <br class="clear">
                         </p>
                     </form>
