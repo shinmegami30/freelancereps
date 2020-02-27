@@ -53,7 +53,7 @@ class UserController extends Controller
 
         $user->assignRole($user_role);
 
-        return redirect()->route('user.index')->withStatus(__('User successfully created.' . $user->id ));
+        return redirect()->route('user.index')->withStatus(__('User successfully created.' ));
     }
 
     /**

@@ -25,13 +25,13 @@
                             <a href="{{ route('members.import')  }}" class="btn btn-fill btn-primary mb-2">Import Excel File</a>
                             <p>or <a href="{{ route('members.index')  }}">go to the listing member page</a></p>
                         </div>
-                        <div class="col-sm-4 text-left">
+                        <div class="col-sm-6 col-md-4 text-left">
                             <h3>Next Steps</h3>
                             <p><a href="{{ route('members.create')  }}"><i class="fas fa-plus-square"></i> Create new member</a></p>
                             <p><a href="{{ route('profile.edit')  }}"><i class="fas fa-edit"></i> Update my profile</a></p>
                             <p><a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout my account</a></p>
                         </div>
-                        <div class="col-sm-4 text-left">
+                        <div class="col-sm-6 col-md-4 text-left">
                             <h3>More Actions</h3>
                             <p><i class="fas fa-cog"></i> Manage <a href="#">settings</a></p>
                         </div>

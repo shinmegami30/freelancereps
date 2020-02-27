@@ -22,6 +22,7 @@
                     <div class="">
                         <table class="table tablesorter " id="">
                             <thead class=" text-primary">
+                                <th><div class="form-check text-left"><label class="form-check-label"><input class="form-check-input " id="cb-select-all" type="checkbox"> <span class="form-check-sign"></span></label></div></th>
                                 <th scope="col">{{ __('Name') }}</th>
                                 <th scope="col">{{ __('Email') }}</th>
                                 <th scope="col">{{ __('Creation Date') }}</th>
@@ -30,6 +31,7 @@
                             <tbody>
                                 @foreach ($users as $user)
                                     <tr>
+                                    <td><div class="form-check text-left "><label class="form-check-label"><input class="form-check-input " type="checkbox" name="data[]" value="{{ $user->id }}"> <span class="form-check-sign"></span></label></div></td>
                                         <td>{{ $user->name }}</td>
                                         <td>
                                             <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>
