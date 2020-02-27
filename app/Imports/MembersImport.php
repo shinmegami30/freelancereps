@@ -36,10 +36,12 @@ class MembersImport implements ToModel, WithHeadingRow
             ]);
         }
     }
+
     public function chunkSize(): int
     {
         return 500;
     }
+    
     public function batchSize(): int
     {
         return 500;
