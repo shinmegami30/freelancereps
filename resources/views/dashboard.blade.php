@@ -41,7 +41,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-6 col-md-4">
             <div class="card card-chart">
                 <div class="card-header">
                     <h5 class="card-category">Net Fusion Technology Pty Ltd</h5>
@@ -105,7 +105,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6 col-md-4">
             <div class="card card-chart">
                 <div class="card-header">
                     <h5 class="card-category">NFT News Feed</h5>
