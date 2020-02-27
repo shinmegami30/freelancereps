@@ -40,7 +40,14 @@
                                     <label class="form-control-label" for="input-password-confirmation">{{ __('Confirm Password') }}</label>
                                     <input type="password" name="password_confirmation" id="input-password-confirmation" class="form-control form-control-alternative" placeholder="{{ __('Confirm Password') }}" value="" required>
                                 </div>
-
+                                <div class="form-group{{ $errors->has('role') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-role">{{ __('Role') }}</label>
+                                    <select name="role" id="input-role" class="form-control form-control-alternative{{ $errors->has('role') ? ' is-invalid' : '' }}" placeholder="{{ __('Role') }}" value="{{ old('role') }}" required>
+                                        <option value="admin" @if ( old('role') == "admin" ) selected @endif>Administrator</option>
+                                        <option value="editor" @if ( old('role') == "editor" ) selected @endif>Owner</option>
+                                    </select>
+                                    @include('alerts.feedback', ['field' => 'email'])
+                                </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
                                 </div>

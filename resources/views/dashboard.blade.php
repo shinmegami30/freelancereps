@@ -1,376 +1,122 @@
 @extends('layouts.app', ['page' => 'Dashboard', 'pageSlug' => 'dashboard'])
 
 @section('content')
-    <script>
+    <!-- <script>
         window.location.href = "{{ route('members.index')  }}";
     </script>
-
+    -->
+    
+    @include('alerts.success')
     <div class="row">
         <div class="col-12">
             <div class="card card-chart">
                 <div class="card-header ">
                     <div class="row">
-                        <div class="col-sm-6 text-left">
-                            <h5 class="card-category">Total Shipments</h5>
-                            <h2 class="card-title">Performance</h2>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
-                            <label class="btn btn-sm btn-primary btn-simple active" id="0">
-                                <input type="radio" name="options" checked>
-                                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Accounts</span>
-                                <span class="d-block d-sm-none">
-                                    <i class="tim-icons icon-single-02"></i>
-                                </span>
-                            </label>
-                            <label class="btn btn-sm btn-primary btn-simple" id="1">
-                                <input type="radio" class="d-none d-sm-none" name="options">
-                                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Purchases</span>
-                                <span class="d-block d-sm-none">
-                                    <i class="tim-icons icon-gift-2"></i>
-                                </span>
-                            </label>
-                            <label class="btn btn-sm btn-primary btn-simple" id="2">
-                                <input type="radio" class="d-none" name="options">
-                                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Sessions</span>
-                                <span class="d-block d-sm-none">
-                                    <i class="tim-icons icon-tap-02"></i>
-                                </span>
-                            </label>
-                            </div>
+                        <div class="col-sm-12 text-left">
+                            <h2 class="card-title">Welcome to Dashboard!</h2>
+                            <h5 class="card-category">We’ve assembled some links to get you started:</h5>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="chart-area">
-                        <canvas id="chartBig1"></canvas>
+                    <div class="row pl-2 pr-2">
+                        <div class="col-sm-4 text-left">
+                            <h3 class="mb-2">Get Started</h3>
+                            <a href="{{ route('members.import')  }}" class="btn btn-fill btn-primary mb-2">Import Excel File</a>
+                            <p>or <a href="{{ route('members.index')  }}">go to the listing member page</a></p>
+                        </div>
+                        <div class="col-sm-4 text-left">
+                            <h3>Next Steps</h3>
+                            <p><a href="{{ route('members.create')  }}"><i class="fas fa-plus-square"></i> Create new member</a></p>
+                            <p><a href="{{ route('profile.edit')  }}"><i class="fas fa-edit"></i> Update my profile</a></p>
+                            <p><a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout my account</a></p>
+                        </div>
+                        <div class="col-sm-4 text-left">
+                            <h3>More Actions</h3>
+                            <p><i class="fas fa-cog"></i> Manage <a href="#">settings</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-sm-4">
             <div class="card card-chart">
                 <div class="card-header">
-                    <h5 class="card-category">Total Shipments</h5>
-                    <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> 763,215</h3>
+                    <h5 class="card-category">Net Fusion Technology Pty Ltd</h5>
                 </div>
                 <div class="card-body">
-                    <div class="chart-area">
-                        <canvas id="chartLinePurple"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="card card-chart">
-                <div class="card-header">
-                    <h5 class="card-category">Daily Sales</h5>
-                    <h3 class="card-title"><i class="tim-icons icon-delivery-fast text-info"></i> 3,500€</h3>
-                </div>
-                <div class="card-body">
-                    <div class="chart-area">
-                        <canvas id="CountryChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="card card-chart">
-                <div class="card-header">
-                    <h5 class="card-category">Completed Tasks</h5>
-                    <h3 class="card-title"><i class="tim-icons icon-send text-success"></i> 12,100K</h3>
-                </div>
-                <div class="card-body">
-                    <div class="chart-area">
-                        <canvas id="chartLineGreen"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6 col-md-12">
-            <div class="card card-tasks">
-                <div class="card-header ">
-                    <h6 class="title d-inline">Tasks(5)</h6>
-                    <p class="card-category d-inline">today</p>
-                    <div class="dropdown">
-                        <button type="button" class="btn btn-link dropdown-toggle btn-icon" data-toggle="dropdown">
-                            <i class="tim-icons icon-settings-gear-63"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#pablo">Action</a>
-                            <a class="dropdown-item" href="#pablo">Another action</a>
-                            <a class="dropdown-item" href="#pablo">Something else</a>
+                    <div class="pl-2 pr-2">
+                    <p><img src="http://netfusiontechnology.com/wp-content/themes/netfusiontechnology/images/logo-meta.jpg" style="max-width:100%;"></p>
+                    <h4>If you need to get in touch with <b><a href="http://netfusiontechnology.com/" target="_blank">Net Fusion Technology</a></b>, please send a message below:</h4>
+                    <form name="post" method="post" id="quick-contact" class="initial-form hide-if-no-js">
+                        <div id="messageWrapper"></div>
+
+                        <p>All fields are required.</p>
+                        <div class="input-text-wrap" id="title-wrap">
+                            <label class="form-control-label" for="input-name">Name </label>
+                            <input type="text" name="name" id="name" class="form-control form-control-alternative" autocomplete="off">
                         </div>
-                    </div>
-                </div>
-                <div class="card-body ">
-                    <div class="table-full-width table-responsive">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" value="">
-                                                <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="title">Update the Documentation</p>
-                                        <p class="text-muted">Dwuamish Head, Seattle, WA 8:47 AM</p>
-                                    </td>
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
-                                            <i class="tim-icons icon-pencil"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" value="" checked="">
-                                                <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="title">GDPR Compliance</p>
-                                        <p class="text-muted">The GDPR is a regulation that requires businesses to protect the personal data and privacy of Europe citizens for transactions that occur within EU member states.</p>
-                                    </td>
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
-                                            <i class="tim-icons icon-pencil"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" value="">
-                                                    <span class="form-check-sign">
-                                                        <span class="check"></span>
-                                                    </span>
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="title">Solve the issues</p>
-                                        <p class="text-muted">Fifty percent of all respondents said they would be more likely to shop at a company </p>
-                                    </td>
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
-                                            <i class="tim-icons icon-pencil"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" value="">
-                                                <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="title">Release v2.0.0</p>
-                                        <p class="text-muted">Ra Ave SW, Seattle, WA 98116, SUA 11:19 AM</p>
-                                    </td>
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
-                                            <i class="tim-icons icon-pencil"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" value="">
-                                                <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="title">Export the processed files</p>
-                                        <p class="text-muted">The report also shows that consumers will not easily forgive a company once a breach exposing their personal data occurs. </p>
-                                    </td>
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
-                                            <i class="tim-icons icon-pencil"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" value="">
-                                                <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="title">Arival at export process</p>
-                                        <p class="text-muted">Capitol Hill, Seattle, WA 12:34 AM</p>
-                                    </td>
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
-                                            <i class="tim-icons icon-pencil"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+
+                        <div class="input-text-wrap" id="title-wrap">
+                        <label class="form-control-label" for="input-subject">Subject </label>
+                            <input type="text" name="subject" id="subject" class="form-control form-control-alternative" autocomplete="off">
+                        </div>
+
+                        <div class="textarea-wrap" id="description-wrap">
+                        <label class="form-control-label" for="input-message">Message</label>
+                            <textarea name="message" id="message" class="form-control form-control-alternative" rows="3" cols="15" autocomplete="off"></textarea>
+                        </div>
+
+                        <p class="submit">
+                            <input type="hidden" class="" id="rs_quick_contact_nonce" name="rs_quick_contact_nonce" value="8303b77bca">
+                            <input type="hidden" name="_wp_http_referer" value="/wp-admin/index.php">
+                            <input type="submit" name="send" id="send-contact" class="btn btn-sm btn-primary" value="Send Message">
+                            <br class="clear">
+                        </p>
+                    </form>
+                    <script>
+                    $(document).ready(function($) {
+                        $("form#quick-contact").submit(function(){
+                            var submit = $("form#quick-contact #send-contact"),
+                                message	= $("form#quick-contact #messageWrapper"),
+                                contents = {
+                                    action: 	'quick_contact',
+                                    nonce: 		this.rs_quick_contact_nonce.value,
+                                    name:		this.name.value,
+                                    subject:	this.subject.value,
+                                    message:	this.message.value
+                                };
+                            submit.attr("disabled", "disabled").addClass('disabled');
+                            submit.val('loading...');
+
+                            $.post( ajaxurl, contents, function( data ) {
+                                submit.removeAttr("disabled").removeClass('disabled');
+                                submit.val('Send Message');
+                                message.html( data );
+                            });
+                            
+                            return false;
+                        });
+                    });
+                    </script>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6 col-md-12">
-            <div class="card ">
+        <div class="col-sm-4">
+            <div class="card card-chart">
                 <div class="card-header">
-                    <h4 class="card-title">Simple Table</h4>
+                    <h5 class="card-category">NFT News Feed</h5>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table tablesorter" id="">
-                            <thead class=" text-primary">
-                                <tr>
-                                    <th>
-                                        Name
-                                    </th>
-                                    <th>
-                                        Country
-                                    </th>
-                                    <th>
-                                        City
-                                    </th>
-                                    <th class="text-center">
-                                        Salary
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                      Dakota Rice
-                                    </td>
-                                    <td>
-                                      Niger
-                                    </td>
-                                    <td>
-                                      Oud-Turnhout
-                                    </td>
-                                    <td class="text-center">
-                                      $36,738
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Minerva Hooper
-                                    </td>
-                                    <td>
-                                        Curaçao
-                                    </td>
-                                    <td>
-                                        Sinaai-Waas
-                                    </td>
-                                    <td class="text-center">
-                                        $23,789
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Sage Rodriguez
-                                    </td>
-                                    <td>
-                                        Netherlands
-                                    </td>
-                                    <td>
-                                        Baileux
-                                    </td>
-                                    <td class="text-center">
-                                        $56,142
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Philip Chaney
-                                    </td>
-                                    <td>
-                                        Korea, South
-                                    </td>
-                                    <td>
-                                        Overland Park
-                                    </td>
-                                    <td class="text-center">
-                                        $38,735
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Doris Greene
-                                    </td>
-                                    <td>
-                                        Malawi
-                                    </td>
-                                    <td>
-                                        Feldkirchen in Kärnten
-                                    </td>
-                                    <td class="text-center">
-                                        $63,542
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Mason Porter
-                                    </td>
-                                    <td>
-                                        Chile
-                                    </td>
-                                    <td>
-                                        Gloucester
-                                    </td>
-                                    <td class="text-center">
-                                        $78,615
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Jon Porter
-                                    </td>
-                                    <td>
-                                        Portugal
-                                    </td>
-                                    <td>
-                                        Gloucester
-                                    </td>
-                                    <td class="text-center">
-                                        $98,615
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    
                 </div>
             </div>
+        </div>
+        <div class="col-lg-4">
+            &nbsp;
         </div>
     </div>
 @endsection

@@ -10,7 +10,9 @@
                     <h3 class="mb-0">{{ __('Members') }}</h3>
                 </div>
                 <div class="col-4 text-right">
+                    @can('publish members')
                     <a href="{{ route('members.create') }}" class="btn btn-sm btn-primary">{{ __('Add New') }}</a>
+                    @endcan
                 </div>
             </div>
         </div>
@@ -21,6 +23,7 @@
           <table class="table tablesorter " id="">
             <thead class=" text-primary">
               <tr>
+                <th><div class="form-check text-left"><label class="form-check-label"><input class="form-check-input " id="cb-select-all" type="checkbox"> <span class="form-check-sign"></span></label></div></th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Address 1</th>
@@ -39,6 +42,7 @@
             @if(count($members) > 0)
                 @foreach($members as $member)
                     <tr>
+                        <td><div class="form-check text-left "><label class="form-check-label"><input class="form-check-input " type="checkbox" name="data[]" value="{{ $member->id }}"> <span class="form-check-sign"></span></label></div></td>
                         <td>{{ $member->firstname }}</td>
                         <td>{{ $member->lastname }}</td>
                         <td>{{ $member->address1 }}</td>
@@ -60,10 +64,14 @@
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
 
-                                        <a class="dropdown-item" href="{{ route('members.edit', $member) }}">{{ __('Edit') }}</a>
+                                        @can('edit members')
+                                          <a class="dropdown-item" href="{{ route('members.edit', $member) }}">{{ __('Edit') }}</a>
+                                        @endcan
+                                        @can('delete members')
                                         <button type="button" class="dropdown-item" style="cursor:pointer;" onclick="confirm('{{ __("Are you sure you want to delete this member?") }}') ? this.parentElement.submit() : ''">
                                             {{ __('Delete') }}
                                         </button>
+                                        @endcan
                                     </form>
                                 </div>
                             </div>
@@ -72,7 +80,7 @@
                 @endforeach
             @else  
                 <tr>
-                    <td colspan="12" class="text-center">No member(s) found</td>
+                    <td colspan="13" class="text-center">No member(s) found</td>
                 </tr>
             @endif
             </tbody>

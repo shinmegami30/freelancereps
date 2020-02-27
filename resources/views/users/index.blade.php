@@ -10,7 +10,9 @@
                             <h4 class="card-title">{{ __('Users') }}</h4>
                         </div>
                         <div class="col-4 text-right">
+                            @can('publish users')
                             <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary">{{ __('Add user') }}</a>
+                            @endcan
                         </div>
                     </div>
                 </div>
@@ -44,13 +46,19 @@
                                                                 {{csrf_field()}}
                                                                 @method('delete')
 
+                                                                @can('edit users')
                                                                 <a class="dropdown-item" href="{{ route('user.edit', $user) }}">{{ __('Edit') }}</a>
+                                                                @endcan
+                                                                @can('delete users')
                                                                 <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
                                                                             {{ __('Delete') }}
                                                                 </button>
+                                                                @endcan
                                                             </form>
                                                         @else
+                                                            @can('edit users')
                                                             <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Edit') }}</a>
+                                                            @endcan
                                                         @endif
                                                     </div>
                                                 </div>

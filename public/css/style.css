@@ -1,7 +1,7 @@
 .login-logo{
 	max-height: 100px;	
 }
-table .btn{
+table .dropdown .btn{
     background: #194e79;
     background-image: -webkit-linear-gradient(to bottom left, #194e79, #276598, #194e79);
     background-image: -o-linear-gradient(to bottom left, #194e79, #276598, #194e79);
@@ -18,7 +18,7 @@ table tr:nth-child(odd){
 table tr:nth-child(even){
     background: #f7f7f7;
 }
-table .btn i{
+table .dropdown .btn i{
     color:#fff;
 }
 .page-item.active .page-link {
@@ -100,4 +100,15 @@ a:hover {
 .record-pagination ul.pagination{
     align-items: center;
     justify-content: center;
+}
+.form-check input[type="checkbox"]:checked+.form-check-sign::before, .form-check input[type="checkbox"]:checked+.form-check-sign::before{
+    background-color: #1e5785;    
+}
+.alert-errors {
+    color: #fff;
+    background-color: #f42929;
+    border-color: #f42929;
+}
+.alert.alert-errors {
+    background-color: #bf0000;
 }

@@ -19,18 +19,22 @@
 
                 <div class="collapse show" id="member-dropdown">
                     <ul class="nav pl-4">
+                        @can('view members')
                         <li @if ($pageSlug == 'members') class="active " @endif>
                             <a href="{{ route('members.index')  }}">
                                 <i class="tim-icons icon-notes"></i>
                                 <p>{{ _('Members') }}</p>
                             </a>
                         </li>
+                        @endcan
+                        @can('publish members')
                         <li @if ($pageSlug == 'members-new') class="active " @endif>
                             <a href="{{ route('members.create')  }}">
                                 <i class="tim-icons icon-simple-add"></i>
                                 <p>{{ _('Add New') }}</p>
                             </a>
                         </li>
+                        @endcan
                         <li @if ($pageSlug == 'members-import') class="active " @endif>
                             <a href="{{ route('members.import')  }}">
                                 <i class="tim-icons icon-upload"></i>
@@ -55,12 +59,14 @@
                                 <p>{{ _('Profile') }}</p>
                             </a>
                         </li>
+                        @can('view users')
                         <li @if ($pageSlug == 'users') class="active " @endif>
                             <a href="{{ route('user.index')  }}">
                                 <i class="tim-icons icon-bullet-list-67"></i>
                                 <p>{{ _('Management') }}</p>
                             </a>
                         </li>
+                        @endcan
                     </ul>
                 </div>
             </li>

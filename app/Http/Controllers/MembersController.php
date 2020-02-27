@@ -19,12 +19,16 @@ class MembersController extends Controller
     public function index()
     {
 
-        // $members = Member::all();
-        // $members = Member::orderBy('lastname', 'desc')->get();
-        // $member = Member::where('lastname', 'search_item');
-        // $members = DB::select('SELECT * FROM members');
-        $members = Member::orderBy('id', 'desc')->paginate(10);
-        return view('members.index')->with('members', $members);
+        if ( auth()->user()->hasPermissionTo('view members')){
+            // $members = Member::all();
+            // $members = Member::orderBy('lastname', 'desc')->get();
+            // $member = Member::where('lastname', 'search_item');
+            // $members = DB::select('SELECT * FROM members');
+            $members = Member::orderBy('id', 'desc')->paginate(10);
+            return view('members.index')->with('members', $members);
+        } else{
+            return redirect()->route('dashboard')->withError(__('You have no permission to access that page.') );
+        }
     }
 
     /**
@@ -34,7 +38,11 @@ class MembersController extends Controller
      */
     public function create()
     {
-        return view('members.create');
+        if ( auth()->user()->hasPermissionTo('publish members') ){
+            return view('members.create');
+        } else{
+            return redirect()->route('dashboard')->withError(__('You have no permission to access that page.') );
+        }
     }
 
     /**
@@ -79,8 +87,13 @@ class MembersController extends Controller
      */
     public function show(Member $member)
     {
-        $member = Member::find($member->id);
-        return view('members.edit')->with('member', $member);
+        if ( auth()->user()->hasPermissionTo('edit members')){
+            $member = Member::find($member->id);
+            return view('members.edit')->with('member', $member);
+        }
+        else{
+            return redirect()->route('dashboard')->withError(__('You have no permission to access that page.') );
+        }
     }
 
     /**
@@ -91,7 +104,12 @@ class MembersController extends Controller
      */
     public function edit(Member $member)
     {
-        return view('members.edit', compact('member'));
+        if ( auth()->user()->hasPermissionTo('edit members')){
+            return view('members.edit', compact('member'));
+        }
+        else{
+            return redirect()->route('dashboard')->withError(__('You have no permission to access that page.') );
+        }
     }
 
     /**
@@ -152,7 +170,12 @@ class MembersController extends Controller
     
     public function import()
     {
-        return view('members.import');
+        if ( auth()->user()->hasPermissionTo('import members')){
+            return view('members.import');
+        }
+        else{
+            return redirect()->route('dashboard')->withError(__('You have no permission to access that page.') );
+        }
     }
     
     public function export()

@@ -26,7 +26,12 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        if ( auth()->user()->hasPermissionTo('publish users')){
+            return view('users.create');
+        }
+        else{
+            return redirect()->route('dashboard')->withError(__('You have no permission to access that page.') );
+        }
     }
 
     /**
@@ -39,6 +44,10 @@ class UserController extends Controller
     public function store(UserRequest $request, User $model)
     {
         $model->create($request->merge(['password' => Hash::make($request->get('password'))])->all());
+        
+        $user_role = $request->get('role');
+        
+        $model->assignRole($user_role);
 
         return redirect()->route('user.index')->withStatus(__('User successfully created.'));
     }
@@ -51,11 +60,16 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        if ($user->id == 1) {
-            return redirect()->route('user.index');
-        }
+        if ( auth()->user()->hasPermissionTo('edit users')){
+            if ($user->id == 1) {
+                return redirect()->route('user.index')->withError(__('You have no permission to access that page.') );
+            }
 
-        return view('users.edit', compact('user'));
+            return view('users.edit', compact('user'));
+        }
+        else{
+            return redirect()->route('dashboard')->withError(__('You have no permission to access that page.') );
+        }
     }
 
     /**
@@ -72,6 +86,11 @@ class UserController extends Controller
             $request->merge(['password' => Hash::make($request->get('password'))])
                 ->except([$hasPassword ? '' : 'password']
         ));
+        
+        $role = $request->input('role');
+
+        $employerRole = Role::where('name', $role)->first();
+        $user->assignRole($employerRole);
 
         return redirect()->route('user.index')->withStatus(__('User successfully updated.'));
     }
