@@ -19,6 +19,7 @@ class MembersImport implements ToModel, WithHeadingRow
     {
         $file = request()->file('file');
         $fileName = $file->getClientOriginalName();
+        
         if($row['code']!=""){
             return Member::updateOrCreate([
                 'code' => $row['code']],
@@ -35,14 +36,15 @@ class MembersImport implements ToModel, WithHeadingRow
             ]);
         }
     }
+    
+    public function chunkSize(): int
+    {
+        return 500;
+    }
 
     public function batchSize(): int
     {
         return 500;
     }
 
-    public function chunkSize(): int
-    {
-        return 500;
-    }
 }
