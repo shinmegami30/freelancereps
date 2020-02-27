@@ -17,7 +17,7 @@ class MembersImport implements ToModel, WithHeadingRow
 
     public function model(array $row)
     {
-        $file     = request()->file('file');
+        $file = request()->file('file');
         $fileName = $file->getClientOriginalName();
 
         if($row['code']!=""){
