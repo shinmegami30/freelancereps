@@ -21,7 +21,9 @@
                         
                         <form action="{{ route('members.run_import') }}" method="POST" enctype="multipart/form-data">
                             {{csrf_field()}}
-                            <input type="file" name="file" class="form-control">
+                            <label class="form-control-label display-none" for="input-file">{{ __('File') }}</label>
+                            <input type="file" name="file" id="file" class="form-control form-control-alternative{{ $errors->has('file') ? ' is-invalid' : '' }}" placeholder="{{ __('Filename') }}" value="{{ old('file') }}" required>
+                            @include('alerts.feedback', ['field' => 'file'])
                             <br>
                             <button class="btn btn-success">Import Members Data</button>
                             <a class="btn btn-warning" href="{{ route('members.export') }}">Export Members Data</a>

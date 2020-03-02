@@ -151,3 +151,6 @@ textarea.form-control.form-control-alternative{
     color: #72777c;
     margin-top: 4px;
 }
+.display-none{
+    display:none !important;
+}
