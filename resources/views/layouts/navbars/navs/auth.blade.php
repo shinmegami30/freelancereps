@@ -80,10 +80,17 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="{{ __('SEARCH') }}">
+                <input type="text" class="form-control" id="q" name="q" placeholder="{{ __('SEARCH') }}">
+                <select class="form-control form-control-alternative" name="action" id="search-selector">
+                    <option value="members">Members</option>
+                    <option value="user">Users</option>
+                </select>
+                <button type="button" class="search btn btn-link" id="search-submit" aria-label="{{ __('Search') }}">
+                    <i class="tim-icons icon-zoom-split"></i>
+                </button>
                 <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('Close') }}">
                     <i class="tim-icons icon-simple-remove"></i>
-              </button>
+                </button>
             </div>
         </div>
     </div>

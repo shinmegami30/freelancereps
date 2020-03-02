@@ -16,15 +16,23 @@ class MembersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
         if ( auth()->user()->hasPermissionTo('view members')){
             // $members = Member::all();
             // $members = Member::orderBy('lastname', 'desc')->get();
-            // $member = Member::where('lastname', 'search_item');
+            // $members = Member::where('lastname', 'search_item');
             // $members = DB::select('SELECT * FROM members');
-            $members = Member::orderBy('id', 'desc')->paginate(10);
+            $q = $request->input('q');
+            
+            if($q!=""){
+                $members = Member::where('lastname', 'LIKE', $q)
+                ->orWhere('firstname', $q)
+                ->orWhere('code', $q)->paginate(20);
+            } else{
+                $members = Member::orderBy('id', 'desc')->paginate(20);
+            }
             return view('members.index')->with('members', $members);
         } else{
             return redirect()->route('dashboard')->withError(__('You have no permission to access that page.') );
@@ -159,6 +167,21 @@ class MembersController extends Controller
         $member->delete();
 
         return redirect()->route('members.index')->withStatus(__('Member successfully deleted.'));
+    }
+
+    public function mass_remove(Request $request)
+    {
+        $data_ids = $request->input('dataid');
+        $data = Member::whereIn('id', $data_ids);
+        if($data->delete()){
+            return 1;
+        }
+    }
+
+    public function search(Request $request)
+    {
+        $q = $request->input('q');
+        return route('members.index', ['q' => $q]);
     }
 
     public function run_import()

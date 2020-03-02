@@ -51,6 +51,7 @@
                 </div>
             </div>
         @endauth
+        <script src="js/ajax.min.js"></script>
         <script src="{{ asset('white') }}/js/core/jquery.min.js"></script>
         <script src="{{ asset('white') }}/js/core/popper.min.js"></script>
         <script src="{{ asset('white') }}/js/core/bootstrap.min.js"></script>
@@ -65,6 +66,7 @@
 
         <script src="{{ asset('white') }}/js/white-dashboard.min.js?v=1.0.0"></script>
         <script src="{{ asset('white') }}/js/theme.js"></script>
+        <script src="js/site.script.js"></script>
 
         @stack('js')
 
@@ -108,35 +110,6 @@
                         setTimeout(function() {
                             clearInterval(simulateWindowResize);
                         }, 1000);
-                    });
-
-                    $('.switch-change-color input').on("switchChange.bootstrapSwitch", function() {
-                            var $btn = $(this);
-
-                            if (white_color == true) {
-                                $('body').addClass('change-background');
-                                setTimeout(function() {
-                                    $('body').removeClass('change-background');
-                                    $('body').removeClass('white-content');
-                                }, 900);
-                                white_color = false;
-                            } else {
-                                $('body').addClass('change-background');
-                                setTimeout(function() {
-                                    $('body').removeClass('change-background');
-                                    $('body').addClass('white-content');
-                                }, 900);
-
-                                white_color = true;
-                            }
-                    });
-
-                    $('.light-badge').click(function() {
-                        $('body').addClass('white-content');
-                    });
-
-                    $('.dark-badge').click(function() {
-                        $('body').removeClass('white-content');
                     });
                 });
             });

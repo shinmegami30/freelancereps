@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Role;
 use App\User;
+use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,9 +16,21 @@ class UserController extends Controller
      * @param  \App\User  $model
      * @return \Illuminate\View\View
      */
-    public function index(User $model)
+    public function index(Request $request, User $user)
     {
-        return view('users.index', ['users' => $model->paginate(15)]);
+        if ( auth()->user()->hasPermissionTo('view users')){
+            $q = $request->input('q');
+            
+            if($q!=""){
+                $user = User::where('name', $q)->paginate(20);
+            } else{
+                $user = User::orderBy('id', 'asc')->paginate(20);
+            }
+            return view('users.index')->with('users', $user);
+        }
+        else{
+            return redirect()->route('dashboard')->withError(__('You have no permission to access that page.') );
+        }
     }
 
     /**
@@ -99,6 +112,13 @@ class UserController extends Controller
         return redirect()->route('user.index')->withStatus(__('User successfully updated.'));
     }
 
+    public function search(Request $request)
+    {
+        $q = $request->input('q');
+        return route('user.index', ['q' => $q]);
+    }
+
+
     /**
      * Remove the specified user from storage
      *
@@ -114,5 +134,14 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('user.index')->withStatus(__('User successfully deleted.'));
+    }
+
+    public function mass_remove(Request $request)
+    {
+        $data_ids = $request->input('dataid');
+        $data = User::whereIn('id', $data_ids);
+        if($data->delete()){
+            return 1;
+        }
     }
 }

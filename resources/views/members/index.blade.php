@@ -20,10 +20,25 @@
         @include('alerts.success')
 
         <div class="">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="alignleft actions bulkactions">
+                <input type="hidden" name="data_type" id="data_type" value="members" />
+                <select class="form-control form-control-alternative" name="action" id="bulk-action-selector-top">
+                  <option value="-1">Bulk Actions</option>
+                  @can('delete members')<option value="trash">Delete</option>@endcan
+                </select>
+                <input type="submit" name="data_doaction" id="data_doaction" class="btn btn-sm btn-primary" value="Apply">
+              </div>
+            </div>
+            <div class="col-sm-6 text-right pt-3">
+            {{ $members->total() }} total items
+            </div>
+          </div>
           <table class="table tablesorter " id="">
             <thead class=" text-primary">
               <tr>
-                <th><div class="form-check text-left"><label class="form-check-label"><input class="form-check-input " id="cb-select-all" type="checkbox"> <span class="form-check-sign"></span></label></div></th>
+                <th width="60"><div class="form-check text-left"><label class="form-check-label"><input class="form-check-input " id="data-id-select-all" type="checkbox"> <span class="form-check-sign"></span></label></div></th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Address 1</th>
@@ -42,7 +57,7 @@
             @if(count($members) > 0)
                 @foreach($members as $member)
                     <tr>
-                        <td><div class="form-check text-left "><label class="form-check-label"><input class="form-check-input " type="checkbox" name="data[]" value="{{ $member->id }}"> <span class="form-check-sign"></span></label></div></td>
+                        <td><div class="form-check text-left "><label class="form-check-label"><input class="form-check-input data-ids" type="checkbox" name="data[]" value="{{ $member->id }}"> <span class="form-check-sign"></span></label></div></td>
                         <td>{{ $member->firstname }}</td>
                         <td>{{ $member->lastname }}</td>
                         <td>{{ $member->address1 }}</td>
@@ -55,6 +70,7 @@
                         <td>{{ $member->filename }}</td>
                         <td>{{ $member->created_at }}1</td>
                         <td>
+                          @canany(['edit members', 'delete members'])
                             <div class="dropdown">
                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-ellipsis-v"></i>
@@ -75,6 +91,7 @@
                                     </form>
                                 </div>
                             </div>
+                          @endcanany
                         </td>
                     </tr>
                 @endforeach

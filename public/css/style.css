@@ -112,3 +112,42 @@ a:hover {
 .alert.alert-errors {
     background-color: #bf0000;
 }
+#bulk-action-selector-top, #search-selector{
+    width: 130px;
+    display: inline-block;
+}
+#data_doaction{
+    padding: 10px 30px;
+    background-color: #dedede !important;
+    background-image: none !important;
+    color: #111;
+}
+.modal-content .modal-header select{
+    right: 95px;
+    position: absolute;
+}
+.modal-content .modal-header button.search{
+    right: 60px;
+    top: 32px;
+}
+textarea.form-control.form-control-alternative{
+    border: 1px solid rgba(29, 37, 59, 0.5);
+    border-radius: 0.4285rem;
+}
+.rss-widget ul{
+    list-style: none;
+    margin-left: 11px;
+    padding: 0;
+}
+.rss-widget ul li{
+    color: #72777c;
+    line-height: 1.5em;
+    margin-bottom: 12px;
+}
+.rss-widget ul li a{
+    font-weight: 600;
+}
+.rss-widget .rssSummary {
+    color: #72777c;
+    margin-top: 4px;
+}

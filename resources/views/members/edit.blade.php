@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('dispatch_date') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-dispatch_date">{{ __('Dispatch Date') }}</label>
-                                    <input type="date" name="dispatch_date" id="input-dispatch_date" class="form-control form-control-alternative{{ $errors->has('dispatch_date') ? ' is-invalid' : '' }}" placeholder="{{ __('Dispatch Date') }}" value="{{ old('name', $member->dispatch_date) }}" required>
+                                    <input type="date" name="dispatch_date" id="input-dispatch_date" class="form-control form-control-alternative{{ $errors->has('dispatch_date') ? ' is-invalid' : '' }}" placeholder="{{ __('Dispatch Date') }}" value="{{ old('name', $member->dispatch_date) }}" >
                                     @include('alerts.feedback', ['field' => 'dispatch_date'])
                                 </div>
                                 <div class="text-center">

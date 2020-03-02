@@ -19,7 +19,7 @@
                         
                         @include('alerts.success')
                         
-                        <form action="{{ route('run_import') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('members.run_import') }}" method="POST" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <input type="file" name="file" class="form-control">
                             <br>
